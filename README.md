@@ -8,7 +8,35 @@ This is a project I worked on in the cybersecurity bootcamp where several resour
 
 Elk-Stack Deployment Automation. I used files in this repisotory to configure the network depicted below:
 
-ELK
+ELK 
+
+
+
+![Untitled Diagram-2](https://user-images.githubusercontent.com/73317602/97065835-40531900-1565-11eb-8310-d9cdb33dbc0a.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the yml file(s) may be used to install only certain pieces of it, such as Metricbeat or Filebeat.
 
