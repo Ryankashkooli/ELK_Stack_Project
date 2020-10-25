@@ -112,58 +112,61 @@ The Ansible playbook can be found in the YAML file elk.yml in this repo, and is 
 
 ELK configuration with .yml file:
 
---- 
-- name: Configure Elk VM with Docker
-  hosts: elk
-  remote_user: azureuser
-  become: true
-  tasks:
-    # Use apt module
+```
+---
+  - name: Install and configure ELK stack container
+    hosts: elk
+    become: true
+    tasks:
+
+    - name: Install apache httpd  (state=present is optional)
+      apt:
+        name: apache2
+        state: absent 
+
+    # Use sysctl module
+    - name: Use sysctl to increase memorymore memory
+      sysctl:
+        name: vm.max_map_count
+        value: "262144"
+        state: present
+        reload: yes
+
     - name: Install docker.io
       apt:
-        update_cache: yes
-        force_apt_get: yes
         name: docker.io
+        update_cache: yes
         state: present
 
-      # Use apt module
-    - name: Install python3-pip
+    - name: Install Python3-pip
       apt:
-        force_apt_get: yes
         name: python3-pip
         state: present
-
-      # Use pip module (It will default to pip3)
-    - name: Install Docker module
+    - name: Install Docker using pip
       pip:
         name: docker
         state: present
 
-      # Use command module
-    - name: Increase virtual memory
-      command: sysctl -w vm.max_map_count=262144
-
-      # Use sysctl module
-    - name: use sysctl to increase memory VM
-      sysctl:
-        name: vm.max_map_count
-        value: "262144"
-        reload: yes
-
-      # Use docker_container module
-    - name: download and launch a docker elk container
+    - name: Install ELK
       docker_container:
         name: elk
         image: sebp/elk:761
-        state: started
         restart_policy: always
-        # Please list the ports that ELK runs on
+         
+        state: started
         published_ports:
-          -  9200:9200
-          -  5044:5044
-          -  5601:5601
+          - 5601:5601
+          - 9200:9200
+          - 5044:5044
 
-> 
+    - name: Enable docker service on restart
+      systemd:
+        name: docker
+        enabled: yes
+
+```
+
+
 This screenshot displays the result of running docker ps after successfully configuring the ELK instance: Screen Shot 2020-10-23 at 18 27 44
 
 ## Target Machines and Beats.
