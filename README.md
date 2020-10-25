@@ -8,7 +8,7 @@ This is a project I worked on in the cybersecurity bootcamp where several resour
 
 Elk-Stack Deployment Automation. I used files in this repisotory to configure the network depicted below:
 
-ELK 
+
 
 
 
@@ -42,7 +42,7 @@ These files have been tested and used to generate a live ELK deployment on Azure
 
 This document contains the following details: Description of the Topology, Access Policies, ELK Configuration, Beats in Use, Machines Being Monitored, and How to Use the Ansible and Container Build.
 
-Topology Description:
+## Topology Description:
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA (the Damn Vulnerable Web Application).
 
@@ -61,10 +61,11 @@ Metricbeat:
 The configuration details of each machine may be found below.
 
 Name	Function	IP Address	Operating System
-JumpBox Provisioner	Gateway	10.0.0.7	Linux
-DVWA 1	Web Server	10.0.0.12	Linux
-DVWA 2	Web Server	10.0.0.13	Linux
-ELK	Monitoring	10.2.0.5	Linux
+JumpBox Provisioner	Gateway	10.0.0.4	Linux
+DVWA 1	Web Server	10.0.0.7	Linux
+DVWA 2	Web Server	10.0.0.6	Linux
+DVWA 3  Web Server  10.0.0.8  Linux
+ELK	Monitoring	10.1.0.4	Linux
 Access Policies
 
 The machines on the internal network are not exposed to the public Internet.
