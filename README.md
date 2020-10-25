@@ -112,7 +112,7 @@ The Ansible playbook can be found in the YAML file elk.yml in this repo, and is 
 
 ELK configuration with .yml file:
 
----
+--- 
 - name: Configure Elk VM with Docker
   hosts: elk
   remote_user: azureuser
