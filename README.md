@@ -78,12 +78,24 @@ Machines within the network can only be accessed by each other. The DVWA machine
 
 A summary of the access policies in place can be found in the table below:
 
-Name	Public Access	Allowed IPs'
-JumpBox	Yes	My Public IP
-ELK-server	No	10.2.0.1-16
-DVWA 1	No	10.0.0.1-16
-DVWA 2	No	10.0.0.1-16
-DVWA 3  No  10.0.0.1-16
+| Name                | Public Access | Allowed IP Address |   |   |
+|---------------------|---------------|--------------------|---|---|
+| JumpBox Provisioner | Allow         | My Public IP       |   |   |
+| Elk Server          | Denny         | 10.0.0/16          |   |   |
+| DVWA 1 ( Web 1 )    | Denny         | 10.0.0/16          |   |   |
+| DVWA 2 ( Web 2 )    | Denny         | 10.0.0/16          |   |   |
+| DVWA 3 ( Web 3 )    | Denny         | 10.0.0/16          |   |   |
+
+
+
+
+
+
+
+
+
+
+
 In addition to the above, Azure has provisioned a load balancer in front of all machines except for the jump box. The load balancer's targets are organized into the following availability zones:
 
 Availability Zone 1: Web-1 + Web-2 + Web-3 Availability Zone 2: ELK
