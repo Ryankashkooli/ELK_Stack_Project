@@ -50,11 +50,11 @@ Load balancing ensures the application will be highly available, while restricti
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the file system.
 
-Filebeat:
+### Filebeat:
 
 -Filebeat monitors the log files or locations specified, collects log events, and forwards them for indexing.
 
-Metricbeat:
+### Metricbeat:
 
 -Metricbeat records system and application metrics. It allows for viewing cpu,memory,disk, and network metrics, in addition to also allowing monitoring for apache, docker, and other applications installed.
 
@@ -66,7 +66,7 @@ DVWA 1	Web Server	10.0.0.7	Linux
 DVWA 2	Web Server	10.0.0.6	Linux
 DVWA 3  Web Server  10.0.0.8  Linux
 ELK	Monitoring	10.1.0.4	Linux
-Access Policies
+# Access Policies
 
 The machines on the internal network are not exposed to the public Internet.
 
@@ -81,11 +81,12 @@ JumpBox	Yes	My Public IP
 ELK-server	No	10.2.0.1-16
 DVWA 1	No	10.0.0.1-16
 DVWA 2	No	10.0.0.1-16
+DVWA 3  No  10.0.0.1-16
 In addition to the above, Azure has provisioned a load balancer in front of all machines except for the jump box. The load balancer's targets are organized into the following availability zones:
 
-Availability Zone 1: Web-1 + Web-2 Availability Zone 2: ELK
+Availability Zone 1: Web-1 + Web-2 + Web-3 Availability Zone 2: ELK
 
-ELK Configuration
+# ELK Configuration
 
 The ELK VM exposes an Elastic Stack instance. Docker is used to download and manage an ELK container.
 
@@ -151,7 +152,7 @@ ELK configuration with .yml file:
 > 
 This screenshot displays the result of running docker ps after successfully configuring the ELK instance: Screen Shot 2020-10-23 at 18 27 44
 
-Target Machines and Beats.
+## Target Machines and Beats.
 
 In order to use the playbook, you will need to have an Ansible control node already configured. After you have such a control node set up, we will need to perform the following steps: -Copy the playbooks to the Ansible Control Node -Run each playbook on the appropriate targets
 
