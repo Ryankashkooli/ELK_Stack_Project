@@ -166,9 +166,6 @@ ELK configuration with .yml file:
 
 ```
 
-
-This screenshot displays the result of running docker ps after successfully configuring the ELK instance: Screen Shot 2020-10-23 at 18 27 44
-
 ## Target Machines and Beats.
 
 In order to use the playbook, you will need to have an Ansible control node already configured. After you have such a control node set up, we will need to perform the following steps: -Copy the playbooks to the Ansible Control Node -Run each playbook on the appropriate targets
