@@ -174,20 +174,31 @@ SSH into the control node (Docker Anisble container on the JumpBox) and follow t
 
 The easiest way to copy the playbooks is to use Git:
 
+```
 $ cd /etc/ansible
 $ mkdir files
 $ git clone https://github.com/actavivis125/elk-stack-project.git
-#Move Playbooks and hosts file Into /etc/ansible
 
+```
+
+### Move Playbooks and hosts file Into /etc/ansible
+
+```
 $ cp elk-stack-project/playbooks/* .
 $ cp elk-stack-project/files/* ./files
+
+```
 After this we run the Ansible playbook:
+
+```
 
 $ cd /etc/ansible
 $ ansible-playbook elk.yml
 $ ansible-playbook filebeat-playbook.yml webservers
 $ ansible-playbook metricbeat-playbook.yml webservers
-To verify success, wait five minutes to give ELK time to start up.
+
+```
+### To verify success, wait five minutes to give ELK time to start up.
 
 Then, navigate to the public IP of your ELK Server machine using port 5601. An example would be 0.0.0.0:5601 in your web browser. This should take you to the Kibana home screen.
 
