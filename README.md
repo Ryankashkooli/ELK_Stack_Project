@@ -166,7 +166,7 @@ ELK configuration with .yml file:
 
 ```
 
-## Target Machines and Beats.
+#### Target Machines and Beats.
 
 In order to use the playbook, you will need to have an Ansible control node already configured. After you have such a control node set up, we will need to perform the following steps: -Copy the playbooks to the Ansible Control Node -Run each playbook on the appropriate targets
 
@@ -177,15 +177,15 @@ The easiest way to copy the playbooks is to use Git:
 ```
 $ cd /etc/ansible
 $ mkdir files
-$ git clone https://github.com/actavivis125/elk-stack-project.git
+$ git clone https://github.com/Ryankashkooli/ELK_Stack_project.git
 
 ```
 
-### Move Playbooks and hosts file Into /etc/ansible
+#### Move Playbooks and hosts file Into /etc/ansible
 
 ```
-$ cp elk-stack-project/playbooks/* .
-$ cp elk-stack-project/files/* ./files
+$ cp ELK_Stack_Project/playbooks/* .
+$ cp ELK_Stack_Project/files/* ./files
 
 ```
 After this we run the Ansible playbook:
@@ -198,7 +198,7 @@ $ ansible-playbook filebeat-playbook.yml webservers
 $ ansible-playbook metricbeat-playbook.yml webservers
 
 ```
-### To verify success, wait five minutes to give ELK time to start up.
+#### To verify success, wait five minutes to give ELK time to start up.
 
 Then, navigate to the public IP of your ELK Server machine using port 5601. An example would be 0.0.0.0:5601 in your web browser. This should take you to the Kibana home screen.
 
@@ -208,12 +208,16 @@ If this is not the case, you likely need to add a filebeat configuration file an
 
 From back on your Ansible container on the JumpBox:
 
+```
+
 #curl https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/files/filebeat-config.yml
+
+```
 The filebeat page lists the details of editing this correctly, but all I had to change was the line under Elasticsearch output. Because the private IP of my ELK Server is 10.2.0.5, I added this to the config file in this section like shown below:
 
-#-------------------------- Elasticsearch output ------------------------------- output.elasticsearch: #Boolean flag to enable or disable the output module. #enabled: true
+### -------------------------- Elasticsearch output ------------------------------- output.elasticsearch: #Boolean flag to enable or disable the output module. #enabled: true
 
-#Array of hosts to connect to. #Scheme and port can be left out and will be set to the default (http and 9200) #In case you specify and additional path, the scheme is required: http://localhost:9200/path #IPv6 addresses should always be defined as: https://[2001:db8::1]:9200 hosts: ["10.2.0.5:9200"] username: "elastic" password: "changeme" #TODO: Change this to the password you set
+#### Array of hosts to connect to. #Scheme and port can be left out and will be set to the default (http and 9200) #In case you specify and additional path, the scheme is required: http://localhost:9200/path #IPv6 addresses should always be defined as: https://[2001:db8::1]:9200 hosts: ["10.2.0.5:9200"] username: "elastic" password: "changeme" #TODO: Change this to the password you set
 
 Make sure you also add the ":9200" after your ELK Server private IP address.
 
@@ -223,15 +227,15 @@ If this is not the case - check your metricbeat config file.If it is missing, ru
 
 Make sure the parts of the file specified below match this (or whatever IPs you have for your machines, but this is what mine is configured for and it should work with the files I have provided) :
 
-#============================== Kibana =====================================
+### ============================== Kibana =====================================
 
-#Starting with Beats version 6.0.0, the dashboards are loaded via the Kibana API. #This requires a Kibana endpoint configuration. setup.kibana: host: "10.2.0.5:5601"
+#### Starting with Beats version 6.0.0, the dashboards are loaded via the Kibana API. #This requires a Kibana endpoint configuration. setup.kibana: host: "10.1.0.4:5601"
 
-#Kibana Host #Scheme and port can be left out and will be set to the default (http and 5601) #In case you specify and additional path, the scheme is required: http://localhost:5601/path #IPv6 addresses should always be defined as: https://[2001:db8::1]:5601 #host: "localhost:5601"
+##### Kibana Host #Scheme and port can be left out and will be set to the default (http and 5601) #In case you specify and additional path, the scheme is required: http://localhost:5601/path #IPv6 addresses should always be defined as: https://[2001:db8::1]:5601 #host: "localhost:5601"
 
 #Kibana Space ID #ID of the Kibana Space into which the dashboards should be loaded. By default, #the Default Space will be used. #space.id:
 
-#============================= Elastic Cloud ==================================
+### ============================= Elastic Cloud ==================================
 
 #These settings simplify using Metricbeat with the Elastic Cloud (https://cloud.elastic.co/).
 
@@ -239,10 +243,10 @@ Make sure the parts of the file specified below match this (or whatever IPs you 
 
 #The cloud.auth setting overwrites the output.elasticsearch.username and #output.elasticsearch.password settings. The format is :. #cloud.auth:
 
-#================================ Outputs =====================================
+### ================================ Outputs =====================================
 
 #Configure what output to use when sending the data collected by the beat.
 
-#-------------------------- Elasticsearch output ------------------------------ output.elasticsearch: #Array of hosts to connect to. hosts: ["10.2.0.5:9200"] username: "elastic" password: "changeme"
+### -------------------------- Elasticsearch output ------------------------------ output.elasticsearch: #Array of hosts to connect to. hosts: ["10.1.0.4:9200"] username: "elastic" password: "changeme"
 
 Congratulations! You have an ELK Stack Server monitoring system logs on two web servers with filebeat and metrics with metricbeat. If you have any issues/questions let me know, and I will try my best to help!
