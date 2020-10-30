@@ -74,7 +74,7 @@ The machines on the internal network are not exposed to the public Internet.
 
 Only the JumpBox machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses: My public IP
 
-Machines within the network can only be accessed by each other. The DVWA machines (Web-1 and Web-2) can send traffic to the ELK-Server
+Machines within the network can only be accessed by each other. The DVWA machines (Web-1, Web-2 and Web-3) can send traffic to the ELK-Server
 
 A summary of the access policies in place can be found in the table below:
 
